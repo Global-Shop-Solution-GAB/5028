@@ -1,0 +1,20 @@
+Program.Sub.Preflight.Start
+Program.Sub.Preflight.End
+
+Program.Sub.Main.Start
+V.Local.sfile.Declare(string)
+v.Local.iPID.Declare(long)
+F.Intrinsic.Control.If(v.Caller.Hook,=,15760)
+	f.Intrinsic.String.Concat(v.Caller.PluginsDir,"\GAB\GAS\PPT_PU_PurchaseReview_POConf.g2u",v.Local.sfile)
+	f.Global.General.CallAsyncGAS(v.Local.sfile,v.Local.iPID)
+f.Intrinsic.Control.ElseIf(v.Caller.Hook,=,15770)
+	f.Intrinsic.String.Concat(v.Caller.PluginsDir,"\GAB\GAS\PPT_OE_ShippingReview_GSS_VarSH02.g2u",v.Local.sfile)
+	f.Global.General.CallAsyncGAS(v.Local.sfile,v.Local.iPID)
+F.Intrinsic.Control.ElseIf(v.Caller.Hook,=,15780)
+	F.Global.General.CallWrapperAsync(50,"JB0010GI/N")
+f.Intrinsic.Control.Elseif(v.Caller.Hook,=,15710)
+	v.Passed.000016.Set("Receive")
+	V.Passed.000020.Set("Ship")
+	V.Passed.000021.Set("New WO")
+f.Intrinsic.Control.EndIf
+Program.Sub.Main.End
